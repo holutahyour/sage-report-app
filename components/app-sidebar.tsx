@@ -2,16 +2,22 @@
 
 import * as React from "react"
 import {
-  BookOpen,
-  Bot,
+  Star,
+  CreditCard,
+  LayoutDashboard,
+  TrendingUp,
+  Clock,
+  DollarSign,
+  Percent,
+  FileText,
+  Receipt,
+  Banknote,
+  Package,
+  ShoppingCart,
+  ClipboardList,
+  BarChart,
+  Settings,
   Command,
-  Frame,
-  LifeBuoy,
-  Map,
-  PieChart,
-  Send,
-  Settings2,
-  SquareTerminal,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -36,120 +42,85 @@ export const data = {
   },
   navMain: [
     {
-      title: "Playground",
+      title: "Favorites",
+      url: "/favorites",
+      icon: Star,
+    },
+    {
+      title: "Accounts Payable",
       url: "#",
-      icon: SquareTerminal,
-      isActive: true,
+      icon: CreditCard,
       items: [
         {
-          title: "History",
-          url: "#",
+          title: "AP Dashboard",
+          url: "/accounts-payable/ap-dashboard",
+          isActive: true,
         },
         {
-          title: "Starred",
-          url: "#",
+          title: "Vendor Performance",
+          url: "/accounts-payable/vendor-performance",
+          icon: TrendingUp,
         },
         {
-          title: "Settings",
-          url: "#",
+          title: "Payment Aging B",
+          url: "/accounts-payable/payment-aging-b",
+          icon: Clock,
+        },
+        {
+          title: "Cash Flow Impact",
+          url: "/accounts-payable/cash-flow-impact",
+          icon: DollarSign,
+        },
+        {
+          title: "Early Discount Op",
+          url: "/accounts-payable/early-discount-op",
+          icon: Percent,
+        },
+        {
+          title: "Transaction Report",
+          url: "/accounts-payable/transaction-report",
+          icon: FileText,
         },
       ],
     },
     {
-      title: "Models",
+      title: "Accounts Receivable",
       url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
+      icon: Receipt,
     },
     {
-      title: "Documentation",
+      title: "Banking & Cash",
       url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
+      icon: Banknote,
     },
     {
-      title: "Settings",
+      title: "Inventory Management",
       url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
+      icon: Package,
+    },
+    {
+      title: "Purchase Orders",
+      url: "#",
+      icon: ShoppingCart,
+    },
+    {
+      title: "Order Entry",
+      url: "#",
+      icon: ClipboardList,
+    },
+    {
+      title: "Financial Reporting",
+      url: "#",
+      icon: BarChart,
+    },
+    {
+      title: "System Administration",
+      url: "#",
+      icon: Settings,
     },
   ],
-  navSecondary: [
-    {
-      title: "Support",
-      url: "#",
-      icon: LifeBuoy,
-    },
-    {
-      title: "Feedback",
-      url: "#",
-      icon: Send,
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
-  ],
+  navSecondary: [],
+  projects: [],
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -164,8 +135,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <Command className="size-4" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">Acme Inc</span>
-                  <span className="truncate text-xs">Enterprise</span>
+                  <span className="truncate font-medium">ERP Financial</span>
+                  <span className="truncate text-xs">Accounting System</span>
                 </div>
               </a>
             </SidebarMenuButton>
