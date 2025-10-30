@@ -28,7 +28,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
-const data = {
+export const data = {
   user: {
     name: "shadcn",
     email: "m@example.com",
