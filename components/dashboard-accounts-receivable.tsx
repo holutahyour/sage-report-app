@@ -1,15 +1,21 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { TrendingUp } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { MoreHorizontal } from "lucide-react" // Added for menu icon
 
-interface DashboardAccountsReceivableProps extends React.ComponentProps<typeof Card> {}
+interface DashboardAccountsReceivableProps extends React.ComponentProps<typeof Card> {
+  className?: string
+}
 
 export function DashboardAccountsReceivable({ className, ...props }: DashboardAccountsReceivableProps) {
   return (
-    <Card className={cn("", className)} {...props}>
+    <Card className={cn("rounded-xl shadow-md p-4 bg-white", className)} {...props}>
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="text-sm font-medium">Accounts Receivable</CardTitle>
-        <TrendingUp className="h-4 w-4 text-muted-foreground" />
+        <CardTitle className="text-sm font-bold">Accounts Receivable</CardTitle>
+        <div className="flex items-center gap-2">
+          <TrendingUp className="h-4 w-4 text-muted-foreground" />
+          <MoreHorizontal className="h-4 w-4 text-muted-foreground" /> {/* Menu icon */}
+        </div>
       </CardHeader>
       <CardContent>
         <div className="h-24 w-full bg-gray-100 flex items-center justify-center rounded-md">

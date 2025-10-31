@@ -4,14 +4,18 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { CalendarDays, Settings } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { MoreHorizontal } from "lucide-react" // Added for menu icon
 
-interface DashboardFiltersProps extends React.ComponentProps<typeof Card> {}
+interface DashboardFiltersProps extends React.ComponentProps<typeof Card> {
+  className?: string
+}
 
 export function DashboardFilters({ className, ...props }: DashboardFiltersProps) {
   return (
-    <Card className={cn("lg:col-span-1", className)} {...props}>
-      <CardHeader>
-        <CardTitle className="text-sm font-medium">Filters</CardTitle>
+    <Card className={cn("rounded-xl shadow-md p-4 bg-white lg:col-span-1", className)} {...props}>
+      <CardHeader className="flex flex-row items-center justify-between">
+        <CardTitle className="text-sm font-bold">Filters</CardTitle>
+        <MoreHorizontal className="h-4 w-4 text-muted-foreground" /> {/* Menu icon */}
       </CardHeader>
       <CardContent>
         <div className="grid gap-4">

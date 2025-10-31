@@ -1,15 +1,25 @@
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Star } from "lucide-react"
-import { DashboardSummaryCards } from "@/components/dashboard-summary-cards"
 import { DashboardAccountsPayable } from "@/components/dashboard-accounts-payable"
 import { DashboardAccountsReceivable } from "@/components/dashboard-accounts-receivable"
 import { DashboardBankBalances } from "@/components/dashboard-bank-balances"
 import { DashboardBudgetPerformance } from "@/components/dashboard-budget-performance"
-import { DashboardInventoryManagement } from "@/components/dashboard-inventory-management"
 import { DashboardFilters } from "@/components/dashboard-filters"
+import { DashboardInventoryManagement } from "@/components/dashboard-inventory-management"
+import { DashboardSummaryCards } from "@/components/dashboard-summary-cards"
+import { Button } from "@/components/ui/button"
+import { Star } from "lucide-react"
+import { useState } from "react"
+import { DateRange } from "react-day-picker"
 
 export default function FavoritesPage() {
+  const [selectedDateRange, setSelectedDateRange] = useState<DateRange | undefined>(undefined)
+  const [visibleCards, setVisibleCards] = useState<string[]>([
+    "ap",
+    "ar",
+    "bank-balances",
+    "budget-performance",
+    "inventory-management",
+  ])
+
   return (
     <div className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="flex items-center justify-between">
@@ -20,20 +30,45 @@ export default function FavoritesPage() {
         </Button>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <DashboardSummaryCards />
+      <div className="grid grid-cols-12 gap-4">
+        {/* Top row: 4 equal cards */}
+        <div className="col-span-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <DashboardSummaryCards selectedDateRange={selectedDateRange} />
+        </div>
+
+        {/* Middle row: 3 cards spanning full width */}
+        <div className="col-span-12 grid gap-4 md:grid-cols-2 lg:grid-cols-12">
+          {visibleCards.includes("ap") && (
+            <DashboardAccountsPayable className="lg:col-span-4" selectedDateRange={selectedDateRange} />
+          )}
+          {visibleCards.includes("ar") && (
+            <DashboardAccountsReceivable className="lg:col-span-4" selectedDateRange={selectedDateRange} />
+          )}
+          {visibleCards.includes("bank-balances") && (
+            <DashboardBankBalances className="lg:col-span-4" selectedDateRange={selectedDateRange} />
+          )}
+        </div>
+
+        {/* Bottom row: 2 cards side-by-side (Budget Performance + Inventory Management) */}
+        <div className="col-span-12 grid gap-4 md:grid-cols-2 lg:grid-cols-12">
+          {visibleCards.includes("budget-performance") && (
+            <DashboardBudgetPerformance className="lg:col-span-6" selectedDateRange={selectedDateRange} />
+          )}
+          {visibleCards.includes("inventory-management") && (
+            <DashboardInventoryManagement className="lg:col-span-6" selectedDateRange={selectedDateRange} />
+          )}
+        </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <DashboardAccountsPayable className="col-span-2" />
-        <DashboardAccountsReceivable />
-        <DashboardBankBalances />
-        <DashboardBudgetPerformance />
-        <DashboardInventoryManagement />
+      {/* Right sidebar: sticky metric selector panel */}
+      <div className="lg:col-span-3 lg:sticky lg:top-0">
+        <DashboardFilters
+          selectedDateRange={selectedDateRange}
+          setSelectedDateRange={setSelectedDateRange}
+          visibleCards={visibleCards}
+          setVisibleCards={setVisibleCards}
+        />
       </div>
-
-      {/* Right Sidebar/Filter Section will go here */}
-      <DashboardFilters />
     </div>
   )
 }
