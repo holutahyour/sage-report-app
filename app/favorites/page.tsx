@@ -1,14 +1,16 @@
+"use client"
 import { DashboardAccountsPayable } from "@/components/dashboard-accounts-payable"
 import { DashboardAccountsReceivable } from "@/components/dashboard-accounts-receivable"
 import { DashboardBankBalances } from "@/components/dashboard-bank-balances"
 import { DashboardBudgetPerformance } from "@/components/dashboard-budget-performance"
 import { DashboardFilters } from "@/components/dashboard-filters"
 import { DashboardInventoryManagement } from "@/components/dashboard-inventory-management"
-import { DashboardSummaryCards } from "@/components/dashboard-summary-cards"
+import { SummaryCard, summaryData } from "@/components/dashboard-summary-cards"
 import { Button } from "@/components/ui/button"
-import { Star } from "lucide-react"
+import { Star, Settings } from "lucide-react"
 import { useState } from "react"
 import { DateRange } from "react-day-picker"
+import { DashboardFilterDisplay } from "@/components/dashboard-filter-display"
 
 export default function FavoritesPage() {
   const [selectedDateRange, setSelectedDateRange] = useState<DateRange | undefined>(undefined)
@@ -20,54 +22,73 @@ export default function FavoritesPage() {
     "inventory-management",
   ])
 
+  const dashboardCardComponents = [
+    { id: "ap", component: DashboardAccountsPayable, type: "payable" },
+    { id: "ar", component: DashboardAccountsReceivable, type: "receivable" },
+    { id: "bank-balances", component: DashboardBankBalances, type: "bank" },
+    { id: "budget-performance", component: DashboardBudgetPerformance, type: "budget" },
+    { id: "inventory-management", component: DashboardInventoryManagement, type: "inventory" },
+  ]
+
+  const visibleMainCards = dashboardCardComponents.filter(card => visibleCards.includes(card.id))
+  const placeholderCount = Math.max(0, 6 - visibleMainCards.length) // Adjusted placeholder count
+
   return (
-    <div className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Favorites Dashboard</h1>
-        <Button variant="outline" size="sm">
-          <Star className="mr-2 h-4 w-4" />
-          Customize
-        </Button>
-      </div>
+    <div className="flex min-h-screen w-full flex-col bg-muted/40">
+      <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+        <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+          <h1 className="text-2xl font-bold">Favorites Dashboard</h1>
+          <Button variant="outline" size="sm" className="ml-auto">
+            <Star className="mr-2 h-4 w-4" />
+            Customize
+          </Button>
+        </header>
+        <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-4 lg:grid-cols-12">
+          {/* Summary Cards - Full Width */}
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 col-span-12">
+            {summaryData.map((card) => (
+              <SummaryCard key={card.id} {...card} />
+            ))}
+          </div>
 
-      <div className="grid grid-cols-12 gap-4">
-        {/* Top row: 4 equal cards */}
-        <div className="col-span-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <DashboardSummaryCards selectedDateRange={selectedDateRange} />
-        </div>
+          {/* Filter Display - Full Width */}
+          {/* <div className="col-span-12">
+            <DashboardFilterDisplay visibleCards={visibleCards} setVisibleCards={setVisibleCards} />
+          </div> */}
 
-        {/* Middle row: 3 cards spanning full width */}
-        <div className="col-span-12 grid gap-4 md:grid-cols-2 lg:grid-cols-12">
-          {visibleCards.includes("ap") && (
-            <DashboardAccountsPayable className="lg:col-span-4" selectedDateRange={selectedDateRange} />
-          )}
-          {visibleCards.includes("ar") && (
-            <DashboardAccountsReceivable className="lg:col-span-4" selectedDateRange={selectedDateRange} />
-          )}
-          {visibleCards.includes("bank-balances") && (
-            <DashboardBankBalances className="lg:col-span-4" selectedDateRange={selectedDateRange} />
-          )}
-        </div>
+          {/* Main Dashboard Cards - 2x3 Grid (takes 8 columns) */}
+          <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-9 xl:col-span-9">
+            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
+              {visibleMainCards.map((card) => {
+                const Component = card.component;
+                return (
+                  <div key={card.id} className="h-64">
+                    <Component
+                      selectedDateRange={selectedDateRange}
+                      className="h-full"
+                    />
+                  </div>
+                );
+              })}
+              {Array.from({ length: placeholderCount }).map((_, index) => (
+                <div key={`placeholder-${index}`} className="flex flex-col items-center justify-center rounded-xl border border-dashed p-4 text-center h-64">
+                  <Settings className="mb-2 h-8 w-8 text-muted-foreground" />
+                  <p className="text-sm text-muted-foreground">Select a metric to fill this slot</p>
+                </div>
+              ))}
+            </div>
+          </div>
 
-        {/* Bottom row: 2 cards side-by-side (Budget Performance + Inventory Management) */}
-        <div className="col-span-12 grid gap-4 md:grid-cols-2 lg:grid-cols-12">
-          {visibleCards.includes("budget-performance") && (
-            <DashboardBudgetPerformance className="lg:col-span-6" selectedDateRange={selectedDateRange} />
-          )}
-          {visibleCards.includes("inventory-management") && (
-            <DashboardInventoryManagement className="lg:col-span-6" selectedDateRange={selectedDateRange} />
-          )}
-        </div>
-      </div>
-
-      {/* Right sidebar: sticky metric selector panel */}
-      <div className="lg:col-span-3 lg:sticky lg:top-0">
-        <DashboardFilters
-          selectedDateRange={selectedDateRange}
-          setSelectedDateRange={setSelectedDateRange}
-          visibleCards={visibleCards}
-          setVisibleCards={setVisibleCards}
-        />
+          {/* Dashboard Filters (takes 4 columns) */}
+          <div className="lg:col-span-3 xl:col-span-3"> {/* Changed to 4 columns */}
+            <DashboardFilters
+              selectedDateRange={selectedDateRange}
+              setSelectedDateRange={setSelectedDateRange}
+              visibleCards={visibleCards}
+              setVisibleCards={setVisibleCards}
+            />
+          </div>
+        </main>
       </div>
     </div>
   )
