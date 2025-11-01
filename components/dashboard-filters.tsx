@@ -32,13 +32,13 @@ export function DashboardFilters({
   }
 
   return (
-    <Card className={cn("rounded-xl shadow-md p-2 bg-white", className)} {...props}>
+    <Card className={cn("rounded-xl shadow-md p-2 gap-2 bg-white", className)} {...props}>
       <CardHeader className="flex flex-row items-center justify-between px-1 py-2">
         <CardTitle className="text-xs font-bold">Filters</CardTitle>
         <MoreHorizontal className="h-3 w-3 text-muted-foreground" />
       </CardHeader>
       <CardContent className="p-1">
-        <div className="grid gap-1">
+        <div className="grid gap-3">
           <div>
             <p className="text-xs font-medium flex items-center gap-1">
               <CalendarDays className="h-3 w-3" /> Date Range
@@ -162,10 +162,12 @@ export function DashboardFilters({
               </div>
             </div>
           </div>
-          <div className="flex gap-0.5 mt-1">
-            <Button className="flex-1 text-xs h-7">Apply Changes</Button>
-            <Button variant="outline" className="text-xs h-7">Top 5</Button>
-            <Button variant="outline" className="text-xs h-7">Clear</Button>
+          <div className="flex flex-col gap-2 mt-1">
+            <Button className="text-xs h-7">Apply Changes</Button>
+            <div className="flex gap-1">
+              {/* <Button variant="outline" className="grow text-xs h-7">Top 5</Button> */}
+              <Button variant="outline" className="grow text-xs h-7">Clear</Button>
+            </div>
           </div>
         </div>
       </CardContent>

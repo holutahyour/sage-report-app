@@ -23,27 +23,27 @@ export function DashboardBankBalances({ className, selectedDateRange, ...props }
         </div>
       </CardHeader>
       <div className="h-[calc(100%-56px)] overflow-y-auto">
-        <CardContent className="p-4 pt-0">
-          <div className="grid gap-4">
+        <CardContent className="pt-0">
+          <div className="grid grid-cols-2 gap-2 text-xs">
             <div>
-              <p className="text-sm text-muted-foreground">Operating Cash</p>
-              <div className="text-2xl font-bold">$145K</div>
-              <p className="text-xs text-green-500">+5.2%</p>
+              <p className="text-muted-foreground">Operating Cash</p>
+              <div className="text-lg font-bold">$145K</div>
+              <p className="text-green-500">+5.2%</p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">Reserved Funds</p>
-              <div className="text-2xl font-bold">$89K</div>
-              <p className="text-xs text-red-500">-2.1%</p>
+              <p className="text-muted-foreground">Reserved Funds</p>
+              <div className="text-lg font-bold">$89K</div>
+              <p className="text-red-500">-2.1%</p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">Loan Bank Balances 1</p>
-              <div className="text-2xl font-bold">$68K</div>
-              <p className="text-xs text-green-500">+8.4%</p>
+              <p className="text-muted-foreground">Loan Bank Balances 1</p>
+              <div className="text-lg font-bold">$68K</div>
+              <p className="text-green-500">+8.4%</p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">Loan Bank Balances 2</p>
-              <div className="text-2xl font-bold">$15K</div>
-              <p className="text-xs text-green-500">0%</p>
+              <p className="text-muted-foreground">Loan Bank Balances 2</p>
+              <div className="text-lg font-bold">$15K</div>
+              <p className="text-green-500">0%</p>
             </div>
           </div>
         </CardContent>

@@ -23,27 +23,27 @@ export function DashboardInventoryManagement({ className, selectedDateRange, ...
         </div>
       </CardHeader>
       <div className="h-[calc(100%-56px)] overflow-y-auto">
-        <CardContent className="p-4 pt-0">
-          <div className="grid grid-cols-2 gap-4">
+        <CardContent className="pt-0">
+          <div className="grid grid-cols-2 gap-2 text-xs">
             <div>
-              <p className="text-sm text-muted-foreground">Total Stock Value</p>
-              <div className="text-2xl font-bold">$2.4M</div>
-              <p className="text-xs text-green-500">+8.2%</p>
+              <p className="text-muted-foreground">Total Stock Value</p>
+              <div className="text-lg font-bold">$2.4M</div>
+              <p className="text-green-500">+8.2%</p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">Total Items</p>
-              <div className="text-2xl font-bold">12,847</div>
-              <p className="text-xs text-green-500">+234</p>
+              <p className="text-muted-foreground">Total Items</p>
+              <div className="text-lg font-bold">12,847</div>
+              <p className="text-green-500">+234</p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">Low Stock Items</p>
-              <div className="text-2xl font-bold">15</div>
-              <p className="text-xs text-red-500">+3</p>
+              <p className="text-muted-foreground">Low Stock Items</p>
+              <div className="text-lg font-bold">15</div>
+              <p className="text-red-500">+3</p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">Out of Stock</p>
-              <div className="text-2xl font-bold">2</div>
-              <p className="text-xs text-green-500">-1</p>
+              <p className="text-muted-foreground">Out of Stock</p>
+              <div className="text-lg font-bold">2</div>
+              <p className="text-green-500">-1</p>
             </div>
           </div>
         </CardContent>

@@ -43,9 +43,9 @@ export default function FavoritesPage() {
             Customize
           </Button>
         </header>
-        <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-4 lg:grid-cols-12">
+        <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-4 lg:grid-cols-14">
           {/* Summary Cards - Full Width */}
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 col-span-12">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 col-span-14">
             {summaryData.map((card) => (
               <SummaryCard key={card.id} {...card} />
             ))}
@@ -57,8 +57,8 @@ export default function FavoritesPage() {
           </div> */}
 
           {/* Main Dashboard Cards - 2x3 Grid (takes 8 columns) */}
-          <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-9 xl:col-span-9">
-            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
+          <div className="grid auto-rows-max items-start gap-4 md:gap-4 lg:col-span-11 xl:col-span-11">
+            <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
               {visibleMainCards.map((card) => {
                 const Component = card.component;
                 return (
@@ -82,6 +82,7 @@ export default function FavoritesPage() {
           {/* Dashboard Filters (takes 4 columns) */}
           <div className="lg:col-span-3 xl:col-span-3"> {/* Changed to 4 columns */}
             <DashboardFilters
+              className=""
               selectedDateRange={selectedDateRange}
               setSelectedDateRange={setSelectedDateRange}
               visibleCards={visibleCards}

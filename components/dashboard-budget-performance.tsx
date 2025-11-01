@@ -23,27 +23,27 @@ export function DashboardBudgetPerformance({ className, selectedDateRange, ...pr
         </div>
       </CardHeader>
       <div className="h-[calc(100%-56px)] overflow-y-auto">
-        <CardContent className="p-4 pt-0">
-          <div className="grid grid-cols-2 gap-4">
+        <CardContent className="pt-0">
+          <div className="grid grid-cols-2 gap-2 text-xs">
             <div>
-              <p className="text-sm text-muted-foreground">Budget Accuracy</p>
-              <div className="text-2xl font-bold">94.2%</div>
-              <p className="text-xs text-green-500">+2.1%</p>
+              <p className="text-muted-foreground">Budget Accuracy</p>
+              <div className="text-lg font-bold">94.2%</div>
+              <p className="text-green-500">+2.1%</p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">Total Variance</p>
-              <div className="text-2xl font-bold">$18.5K</div>
-              <p className="text-xs text-red-500">+5.2K</p>
+              <p className="text-muted-foreground">Total Variance</p>
+              <div className="text-lg font-bold">$18.5K</div>
+              <p className="text-red-500">+5.2K</p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">Forecast Error</p>
-              <div className="text-2xl font-bold">0.8%</div>
-              <p className="text-xs text-green-500">-0.1%</p>
+              <p className="text-muted-foreground">Forecast Error</p>
+              <div className="text-lg font-bold">0.8%</div>
+              <p className="text-green-500">-0.1%</p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">Alerts</p>
-              <div className="text-2xl font-bold">3</div>
-              <p className="text-xs text-red-500">+1</p>
+              <p className="text-muted-foreground">Alerts</p>
+              <div className="text-lg font-bold">3</div>
+              <p className="text-red-500">+1</p>
             </div>
           </div>
         </CardContent>

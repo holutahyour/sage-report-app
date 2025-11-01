@@ -33,7 +33,7 @@ export function SummaryCard({
   ...props
 }: SummaryCardProps) {
   return (
-    <Card className={cn("rounded-xl shadow-md py-4 bg-white h-32", className)} {...props}>
+    <Card className={cn("rounded-xl shadow-md py-4 gap-2 bg-white h-28", className)} {...props}>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-bold">{title}</CardTitle>
         {Icon && <Icon className={`h-4 w-4 text-muted-foreground ${iconColor}`} />}
