@@ -1,0 +1,39 @@
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosf
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+*.log
+*.ide
+*.pdb
+*.opendb
+*.tlog
+*.bak
+
+# NuGet
+*.nupkg
+.nuget/
+packages/
+*.cache
+project.assets.json
+project.nuget.cache
+
+# Rider
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Other
+*.pid
+*.pid.lock
+*.swo
+*.swp
+*.DS_Store

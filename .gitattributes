@@ -1,0 +1,5 @@
+# Enforce LF line endings for pnpm-lock.yaml
+pnpm-lock.yaml text eol=lf
+
+# Ensure .gitattributes itself uses LF line endings
+.gitattributes text eol=lf

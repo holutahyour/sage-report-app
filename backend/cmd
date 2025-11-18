@@ -1,0 +1,1 @@
+docker cp C:\Users\Lagetronix\Downloads\CABIPA_FULL_2025-11-04T00-14-32.bak sql-server:/var/opt/mssql
